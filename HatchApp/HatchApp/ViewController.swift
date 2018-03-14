@@ -23,12 +23,6 @@ class ViewController: UIViewController {
         // Hide those when not in use
         self.countLabel.alpha = 0
         self.countDescLabel.alpha = 0
-        
-        let example0 = self.coinChange(money: 4, denominations: [1,2,3])
-        print("Example 0: \(example0)")
-        
-        let example1 = self.coinChange(money: 10, denominations: [2,5,3,6])
-        print("Example 1: \(example1)")
     }
     
     @IBAction func goPressed(_ sender: Any) {
@@ -41,6 +35,7 @@ class ViewController: UIViewController {
         guard let money = Int(moneyString) else { print("Nothing in money; returning"); return }
         let denominationStrings = denominationString.split(separator: " ")
         let denominations: [Int] = denominationStrings.flatMap { Int($0) }
+        if (denominations.count <= 0) { print("Nothing in denominations; returning"); return }
         
         let answer = self.coinChange(money: money, denominations: denominations)
         
